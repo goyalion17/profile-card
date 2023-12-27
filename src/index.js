@@ -2,6 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  { skill: "React", level: "beginner", color: "green" },
+  { skill: "JavaScript", level: "intermediate", color: "Teal" },
+  { skill: "Html / Css", level: "advanced", color: "blue" },
+  { skill: "Web Design", level: "advanced", color: "red" },
+  { skill: "Git / GitHub", level: "intermediate", color: "yellow" },
+  { skill: "Next.js", level: "beginner", color: "aqua" },
+];
+
 function App() {
   return (
     <div className="card">
@@ -38,40 +47,29 @@ function Intro() {
 
 function SkillList() {
   return (
-    <div className="skill-list">
-      <Skill
-        skillName={"React"}
-        style={{ backgroundColor: "green", color: "#fff" }}
-      />
-      <Skill
-        skillName={"JavaScript"}
-        style={{ backgroundColor: "blue", color: "#fff" }}
-      />
-      <Skill
-        skillName={"Html / Css"}
-        style={{ backgroundColor: "red", color: "#fff" }}
-      />
-      <Skill
-        skillName={"Web Design"}
-        style={{ backgroundColor: "yellow", color: "black" }}
-      />
-      <Skill
-        skillName={"Git / GitHub"}
-        style={{ backgroundColor: "aqua", color: "black" }}
-      />
-      <Skill
-        skillName={"Next.js"}
-        style={{ backgroundColor: "Teal", color: "#fff" }}
-      />
-    </div>
+    <ul className="skill-list">
+      {skills.map((skill) => (
+        <Skill
+          skill={skill.skill}
+          color={skill.color}
+          level={skill.level}
+          key={skill.skill}
+        />
+      ))}
+    </ul>
   );
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div style={props.style} className="skill">
-      {props.skillName}
-    </div>
+    <li className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
+    </li>
   );
 }
 
